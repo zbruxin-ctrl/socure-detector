@@ -1,21 +1,23 @@
 {
   "manifest_version": 3,
   "name": "KYC Detection Engine",
-  "version": "6.0",
+  "version": "7.0",
   "permissions": ["scripting"],
   "host_permissions": ["<all_urls>"],
-  "web_accessible_resources": [
-    {
-      "resources": ["injected.js"],
-      "matches": ["<all_urls>"]
-    }
-  ],
   "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["main-world.js"],
+      "css": ["style.css"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
     {
       "matches": ["<all_urls>"],
       "js": ["content.js"],
       "css": ["style.css"],
-      "run_at": "document_start"
+      "run_at": "document_start",
+      "world": "ISOLATED"
     }
   ]
 }
